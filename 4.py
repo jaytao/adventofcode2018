@@ -22,9 +22,7 @@ sleeping = False
 index = 0
 sorted_keys = sorted(events)
 curr_ts = sorted_keys[0]
-print(curr_ts)
 last_ts = sorted_keys[-1]
-print(last_ts)
 while curr_ts <= last_ts:
     if curr_ts in events:
         e = events[curr_ts]
@@ -47,7 +45,7 @@ while curr_ts <= last_ts:
         curr_ts += timedelta(hours=22)
     else:
         curr_ts += timedelta(minutes=1)
-
+print("part 1:")
 print("guard",snorlax)
 _max = 0
 minute = 0
@@ -56,3 +54,14 @@ for x in range(0,60):
         _max = total_counter[snorlax].count(x)
         minute = x
 print("minute",minute)
+
+print("part 2:")
+_max = 0
+for k,v in total_counter.items():
+    for x in range(0,60):
+        if v.count(x) > _max:
+            guard = k
+            _max = v.count(x)
+            minute = x
+
+print("Guard:",guard,"x","minute: ",minute,"=",str(int(guard) * int(minute)))
